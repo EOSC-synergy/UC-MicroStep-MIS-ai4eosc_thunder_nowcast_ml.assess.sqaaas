@@ -1,0 +1,42 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml:
+      branch: master
+      repo: https://github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml git:
+        commands:
+        - /usr/bin/env sh .sqa/script.pretty-malachite-wasp.sh
+        container: qc.acc_sickly-thistle-goat
+  QC.Doc:
+    repos:
+      github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skimpy-cerise-loon.sh
+        container: qc.doc_dorky-indigo-cichlid
+      github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml git:
+        commands:
+        - /usr/bin/env sh .sqa/script.muzzy-green-cheetah.sh
+        container: qc.doc_pretty-beige-falcon
+  QC.Lic:
+    repos:
+      github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-pear-lemur.sh
+        container: qc.lic_scummy-cyan-malamute
+  QC.Ver:
+    repos:
+      github.com/MicroStep-MIS/UC-MicroStep-MIS-ai4eosc_thunder_nowcast_ml get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.woozy-ecru-bandicoot.sh
+        container: qc.ver_sleazy-blue-uguisu
+timeout: 5400
